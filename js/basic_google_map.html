@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100%; width: 100% }
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBMhu8xsXdaHvFYN0N00TzH-JVEqD1MaEE&sensor=true">
+    </script>
+    <script type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        myLatlng = new google.maps.LatLng(45, 0)
+
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.TERRAIN // ROADMAP, HYBRID, TERRAIN, SATELLITE
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        // MARKER
+
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          title:"Hello World!",
+          map: map,
+        });
+
+        // To add the marker to the map, call setMap() or declare in object, i.e
+        // marker.setMap(map);
+
+        // POLYLINE
+
+        var flightCoordinates = [
+          new google.maps.LatLng(45, 0),
+          new google.maps.LatLng(46, 2),
+          new google.maps.LatLng(48, 2),
+          new google.maps.LatLng(50, 5),
+        ];
+
+        var flightPath = new google.maps.Polyline({
+          path: flightCoordinates,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+
+        // POLYGON
+
+        var triangleCoordinates = [
+          new google.maps.LatLng(42, 0),
+          new google.maps.LatLng(43, 1),
+          new google.maps.LatLng(42, 2),
+          new google.maps.LatLng(42, 0), // this could be left off, i.e. autocomplete
+        ];
+
+        triangle = new google.maps.Polygon({
+          paths: triangleCoordinates,
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35
+        });
+
+        triangle.setMap(map);
+
+      });
+
+    </script>
+  </head>
+
+  <body>
+    <div id="map_canvas"></div>
+  </body>
+
+</html>
