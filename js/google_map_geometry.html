@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100%; width: 100% }
+      .metrics   { position: absolute; bottom: 20px; left: 20px; 
+                    background-color: White; 
+                    padding: 5px;
+                    border: 1px solid Black;
+                  }
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBMhu8xsXdaHvFYN0N00TzH-JVEqD1MaEE&sensor=true&libraries=geometry">
+    </script>
+    <script type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        myLatlng = new google.maps.LatLng(55.831770, -4.271475)
+
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.TERRAIN, // ROADMAP, HYBRID, TERRAIN, SATELLITE
+          draggableCursor: "crosshair"
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        var route = {
+          points: new google.maps.MVCArray(),
+          line: null,
+          polygon: null
+        }
+
+        function drawLine() {
+          if (route.points.length > 1) {
+            polygonOptions = {
+              map: map,
+              path: route.points
+            }
+            route.line = new google.maps.Polyline(polygonOptions)
+          } else {
+            route.line = null;
+          }
+        }
+
+        function drawPolygon() {
+          if (route.points.length > 1) {
+            polygonOptions = {
+              map: map,
+              path: route.points
+            }
+            if (route.polygon) {
+              route.polygon.setMap(null);
+            }
+            route.polygon = new google.maps.Polygon(polygonOptions)
+          } else {
+            route.polygon = null;
+          }
+
+        }
+
+        function calcDistance() {
+          if (route.line) {
+            distance = google.maps.geometry.spherical.computeLength(route.line.getPath());
+            roundedDistance = Math.round(distance * 10.0)/10.0;
+            $('#distance').html("Distance: " + roundedDistance + " metres");
+          }
+        }
+
+        function calcArea() {
+          if (route.polygon) {
+            area = google.maps.geometry.spherical.computeArea(route.polygon.getPath());
+            roundedArea = Math.round(area * 10.0)/10.0;
+            $('#area').html("Area: " + roundedArea + " square metres");
+          }
+        }
+
+        google.maps.event.addListener(map, 'click', function(evt) {
+
+          var marker = new google.maps.Marker({
+            position: evt.latLng,
+            title: "a point",
+            map: map
+        
+          });
+
+          route.points.push(evt.latLng)
+          drawLine();
+          drawPolygon();
+          calcDistance();
+          calcArea();
+
+        });
+
+      });
+
+    </script>
+  </head>
+
+  <body>
+    <div id="map_canvas"></div>
+    <div class="metrics">
+      <div id="distance"></div>
+      <div id="area"></div>
+    </div>
+  </body>
+
+</html>
