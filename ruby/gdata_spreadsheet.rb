@@ -20,6 +20,7 @@ tab    = /gid=(\d+)/.match(URI.parse(doc_url).fragment)[1]
 format = "csv" # or xls
 url    = "https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=#{key}&gid=#{tab}&fmcmd&exportFormat=#{format}"
 
+
 client = GData::Client::Spreadsheets.new  # Instantiate object 
 client.clientlogin(email, password)       # authenticate
 doc = client.get(url)                     # get document
