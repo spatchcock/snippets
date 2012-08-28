@@ -7,14 +7,16 @@ require 'rubygems'
 require 'gdata/client'  
 require 'gdata/http'  
 require 'gdata/auth'
+require 'rack'
 require 'csv'
 
 email    = #<ADD_EMAIL>
 password = #<ADD_PASSWORD>
-
-key    = #<ADD_DOCUMENT_KEY> 'key' query parameter
-tab    = #<ADD_TAB_INDEX>     index of required tab, if omitted from url, defaults to 0 (i.e. first tab)
-format = #<ADD_FORMAT>        e.g. "csv" or "xls"
+doc_url  = #<GOOGLE_SPREADSHEET_URL>
+                                                   
+format = "csv" # or xls
+key    = Rack::Utils.parse_query(URI(doc_url).query)['key']
+tab    = /gid=(\d+)/.match(URI(doc_url).fragment)[1]
 url    = "https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=#{key}&gid=#{tab}&fmcmd&exportFormat=#{format}"
 
 client = GData::Client::Spreadsheets.new  # Instantiate object 
