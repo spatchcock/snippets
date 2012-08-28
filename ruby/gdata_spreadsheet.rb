@@ -7,16 +7,17 @@ require 'rubygems'
 require 'gdata/client'  
 require 'gdata/http'  
 require 'gdata/auth'
-require 'rack'
+require 'uri'
 require 'csv'
 
 email    = #<ADD_EMAIL>
 password = #<ADD_PASSWORD>
 doc_url  = #<GOOGLE_SPREADSHEET_URL>
                                                    
+# Alternative query parse if using Rails (i.e. using Rack): Rack::Utils.parse_query(URI(doc_url).query)['key']
+key    = URI.parse(doc_url).query.split("&").map {|q| q.split("=")}.find {|k,v| k == 'key'}.last
+tab    = /gid=(\d+)/.match(URI.parse(doc_url).fragment)[1]
 format = "csv" # or xls
-key    = Rack::Utils.parse_query(URI(doc_url).query)['key']
-tab    = /gid=(\d+)/.match(URI(doc_url).fragment)[1]
 url    = "https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=#{key}&gid=#{tab}&fmcmd&exportFormat=#{format}"
 
 client = GData::Client::Spreadsheets.new  # Instantiate object 
