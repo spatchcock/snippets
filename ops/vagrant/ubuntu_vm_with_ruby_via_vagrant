@@ -1,0 +1,48 @@
+# From Deploying Rails, Pragmatic Programmers, 2012.
+
+# Install vagrant gem
+gem install vagrant
+
+# Add new box via vagrant remote
+# Added under .vagrant.d/boxes
+vagrant box add lucid64 http://files.vagrantup.com/lucid64.box
+
+# Create Vagrant file and configure box name
+#
+#   config.vm.box = "lucid64"
+#
+vagrant init
+
+# Boot VM
+# Creates VM in VirtualBox and local reference key in .vagrant 
+vagrant up
+
+# ssh into new VM
+vagrant ssh
+
+
+sudo apt-get update -y
+
+# install dependencies
+sudo apt-get install build-essential zlib1g-dev libssl-dev libreadline-dev git-core curl libyaml-dev libcurl4-dev libsqlite3-dev apache2-dev -y
+
+# remove vagrant Ruby installation
+sudo rm -rf /opt/vagrant_ruby/
+
+# download and build Ruby
+curl --remote-name http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz
+tar zxf ruby-1.9.3-p194.tar.gz
+cd ruby-1.9.3-p194/
+./configure
+make
+sudo make install
+
+# Exit ssh session
+exit
+
+
+# Package up the updated box. Creates package.box in local dir
+vagrant package
+
+# Add new box to vagrant with new name
+vagrant box add lucid64_with_ruby193 package.box

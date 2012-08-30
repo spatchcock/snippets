@@ -1,0 +1,8 @@
+# Boot into VM GUI using either VirtualBox interface or vagrant
+# configuration options...
+#
+#  config.vm.boot_mode = :gui
+#
+# edit /etc/rc.local and add the following before "exit 0"
+
+/etc/init.d/networking restart
