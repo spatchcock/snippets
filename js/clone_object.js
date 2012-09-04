@@ -1,7 +1,8 @@
 function cloneObject(obj) {
-  var clone = {};
-  for(var i in obj) {
-    if(typeof(obj[i])=="object") {
+  var clone = {}, i;
+  
+  for(i in obj) {
+    if(typeof(obj[i]) == "object") {
       clone[i] = cloneObject(obj[i]);
     } else {
       clone[i] = obj[i];
