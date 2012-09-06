@@ -1,7 +1,10 @@
 #! /bin/bash
 
 # Pass in the name of the directory where the backed-up $HOME content is
-# Whitespace in file paths is causing problems.
+
+# Whitespace in file paths is causing problems, wiht paths being split on the
+# whitespace character. This affects the Virtual Box dir, and possible the path
+# of the back up media..
 
 files[0]=code
 files[1]="VirtualBox VMs"
