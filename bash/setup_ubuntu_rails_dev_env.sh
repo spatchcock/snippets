@@ -37,7 +37,7 @@ rvm --default 1.9.2-head
 rvm use default
 
 # Install Rails #
-gem install rails vagrant bundler
+sudo gem install rails vagrant bundler
 
 ### Add Sublime Text 2 ###
 sudo add-apt-repository ppa:webupd8team/sublime-text-2
@@ -51,4 +51,10 @@ git clone git://github.com/kemayo/sublime-text-2-git.git Git
 # MySQL
 sudo apt-get install mysql-server libmysqlclient-dev libmysql-ruby
 
-
+# Install Oracle Virtual Box
+# Dependencies
+sudo apt-get install bcc iasl xsltproc xalan libxalan110-dev uuid-dev zlib1g-dev libidl-dev libsdl1.2-dev libxcursor-dev libqt3-headers libqt3-mt-dev libasound2-dev libstdc++5 linux-headers-`uname -r` build-essential
+cd /tmp
+# This version might need to be checked depending on the specific OS and kernel type
+wget http://download.virtualbox.org/virtualbox/4.1.20/virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
+sudo dpkg -i virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
