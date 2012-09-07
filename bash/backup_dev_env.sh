@@ -8,6 +8,7 @@ IFS=",";
 files=(code,"VirtualBox VMs",.gem,.heroku,.ssh,.vagrant.d,.VirtualBox,.bashrc,.gemrc,.gitconfig,.irbrc)
 
 target_dir="$1";
+
 mkdir $target_dir;
 
 for i in ${files[@]}
