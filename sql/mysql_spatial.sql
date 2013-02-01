@@ -39,7 +39,7 @@ select MPolyFromText('MULTIPOLYGON(((90 0,110 0,110 20,90 20,90 0)),((90 0,110 0
 select GeomCollFromText('GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))');
 # or   GeometryCollectionFromText('GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))');
 select GeomFromText('<any WKT object>');
-# or   GeometryFromText('<any WKT object>'');
+# or   GeometryFromText('<any WKT object>');
 
 
 ### EXAMPLES ###
