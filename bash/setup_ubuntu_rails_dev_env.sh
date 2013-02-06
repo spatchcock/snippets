@@ -23,17 +23,22 @@ git config --global user.email <EMAIL>
 
 ### Install RVM - Ruby Version Manager ###
 
-bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bashrc
+\curl -L https://get.rvm.io | bash -s stable
+# echo "source $HOME/.rvm/scripts/rvm" >> ~/.bashrc
+
+# bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+# echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bashrc
+
 source .bashrc
 
 rvm get head
 
 # Install Ruby #
+rvm install 1.8.6-head
 rvm install 1.8.7-head
 rvm install 1.9.2-head
 rvm install 1.9.3-head
-rvm --default 1.9.2-head
+rvm --default 1.9.3-head
 rvm use default
 
 # Install Rails #
@@ -56,5 +61,12 @@ sudo apt-get install mysql-server libmysqlclient-dev libmysql-ruby
 sudo apt-get install bcc iasl xsltproc xalan libxalan110-dev uuid-dev zlib1g-dev libidl-dev libsdl1.2-dev libxcursor-dev libqt3-headers libqt3-mt-dev libasound2-dev libstdc++5 linux-headers-`uname -r` build-essential
 cd /tmp
 # This version might need to be checked depending on the specific OS and kernel type
-wget http://download.virtualbox.org/virtualbox/4.1.20/virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
-sudo dpkg -i virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
+# Just install using Synaptic...
+# wget http://download.virtualbox.org/virtualbox/4.1.20/virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
+# sudo dpkg -i virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
+
+# Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get update
+sudo apt-get install google-chrome-stable
