@@ -13,36 +13,34 @@ sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl 
 
 ### Configure git ###
 
-git config --global user.name <USERNAME>
-git config --global user.email <EMAIL>
+git config --global user.name spatchcock
+git config --global user.email andrew.berkeley.is@googlemail.com
 
 # Configure SSH key#
-# ssh-keygen -t rsa -C <EMAIL>
+ssh-keygen -t rsa -C andrew.berkeley.is@googlemail.com
 
 # Add Key to Github #
 
 ### Install RVM - Ruby Version Manager ###
 
 \curl -L https://get.rvm.io | bash -s stable
-# echo "source $HOME/.rvm/scripts/rvm" >> ~/.bashrc
+source .bash_profile
 
-# bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-# echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bashrc
-
-source .bashrc
+# https://rvm.io/integration/gnome-terminal/
+# "For RVM to work properly, you have to set the 'Run command as login shell' checkbox on the Title and Command tab inside of gnome-terminal's Settings page"
 
 rvm get head
 
 # Install Ruby #
-rvm install 1.8.6-head
+rvm install 1.8.6-p420
 rvm install 1.8.7-head
 rvm install 1.9.2-head
-rvm install 1.9.3-head
-rvm --default 1.9.3-head
+rvm install 1.9.3-p194
+rvm --default 1.9.3-p194
 rvm use default
 
 # Install Rails #
-sudo gem install rails vagrant bundler
+sudo gem install rails bundler
 
 ### Add Sublime Text 2 ###
 sudo add-apt-repository ppa:webupd8team/sublime-text-2
@@ -59,11 +57,8 @@ sudo apt-get install mysql-server libmysqlclient-dev libmysql-ruby
 # Install Oracle Virtual Box
 # Dependencies
 sudo apt-get install bcc iasl xsltproc xalan libxalan110-dev uuid-dev zlib1g-dev libidl-dev libsdl1.2-dev libxcursor-dev libqt3-headers libqt3-mt-dev libasound2-dev libstdc++5 linux-headers-`uname -r` build-essential
-cd /tmp
-# This version might need to be checked depending on the specific OS and kernel type
-# Just install using Synaptic...
-# wget http://download.virtualbox.org/virtualbox/4.1.20/virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
-# sudo dpkg -i virtualbox-4.1_4.1.20-80170~Ubuntu~precise_amd64.deb
+
+# Just install Oracle Virtual Box using Synaptic...
 
 # Chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
