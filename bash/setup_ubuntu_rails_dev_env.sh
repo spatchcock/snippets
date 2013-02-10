@@ -13,8 +13,8 @@ sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl 
 
 ### Configure git ###
 
-git config --global user.name spatchcock
-git config --global user.email andrew.berkeley.is@googlemail.com
+git config --global user.name <username>
+git config --global user.email <email>
 
 # Configure SSH key#
 ssh-keygen -t rsa -C andrew.berkeley.is@googlemail.com
@@ -48,8 +48,9 @@ sudo apt-get update
 sudo apt-get install sublime-text
 
 # Add Git Support#
-cd ~/.config/sublime-text-2/Packages/
+cd ~/.config/sublime-text-2/Packages/;
 git clone git://github.com/kemayo/sublime-text-2-git.git Git
+cd;
 
 # MySQL
 sudo apt-get install mysql-server libmysqlclient-dev libmysql-ruby
@@ -57,11 +58,24 @@ sudo apt-get install mysql-server libmysqlclient-dev libmysql-ruby
 # Install Oracle Virtual Box
 # Dependencies
 sudo apt-get install bcc iasl xsltproc xalan libxalan110-dev uuid-dev zlib1g-dev libidl-dev libsdl1.2-dev libxcursor-dev libqt3-headers libqt3-mt-dev libasound2-dev libstdc++5 linux-headers-`uname -r` build-essential
-
-# Just install Oracle Virtual Box using Synaptic...
+# Ubuntu 12.10 required...
+sudo apt-get install dkms build-essential linux-headers-generic
+sudo apt-get install linux-headers-$(uname -r)
+sudo apt-get install virtualbox
 
 # Chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 sudo apt-get update
 sudo apt-get install google-chrome-stable
+
+# Skype
+sudo add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+sudo apt-get update && sudo apt-get install skype
+
+# Gem sources
+gem sources -a http://gems.github.com
+
+# Dropbox
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
