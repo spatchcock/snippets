@@ -79,3 +79,7 @@ gem sources -a http://gems.github.com
 # Dropbox
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
+# Everpad
+sudo add-apt-repository ppa:nvbn-rm/ppa
+sudo apt-get update
+sudo apt-get install everpad
