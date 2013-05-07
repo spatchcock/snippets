@@ -5,7 +5,7 @@
 IFS_DEFAULT="$IFS";
 IFS=",";
 
-files=(code,"VirtualBox VMs",.gem,.heroku,.ssh,.vagrant.d,.VirtualBox,.bashrc,.gemrc,.gitconfig,.irbrc)
+files=(code,.gem,.ssh,.vagrant.d,.VirtualBox,.bashrc,.gemrc,.gitconfig,.irbrc)
 
 target_dir="$1";
 
